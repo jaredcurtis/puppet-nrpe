@@ -17,21 +17,26 @@
 # Sample Usage:
 #
 class nrpe::params {
-    $user     = 'root'
-    $group    = 'root'
-    $conf     = '/etc/nagios/nrpe.cfg'
-    $confd    = '/etc/nrpe.d'
 
-    case $::operatingsystem {
-        'centos', 'redhat', 'fedora', 'scientific': {
-            $nrpe_name    = 'nrpe'
-            $nrpe_service = 'nrpe'
-            $sysconf      = '/etc/sysconfig/nrpe'
-            $sysconf_template = 'nrpe/nrpe-sysconfig.erb'
-            $use_sysconf  = true
-        }
-        default: {
-            fail("The ${module_name} module is not support on ${::operatingsystem}")
-        }
+  $user     = 'root'
+  $group    = 'root'
+  $conf     = '/etc/nagios/nrpe.cfg'
+  $confd    = '/etc/nrpe.d'
+
+  case $::operatingsystem {
+    'centos',
+    'redhat',
+    'fedora',
+    'scientific',
+    'oel' : {
+      $nrpe_name        = 'nrpe'
+      $nrpe_service     = 'nrpe'
+      $sysconf          = '/etc/sysconfig/nrpe'
+      $sysconf_template = 'nrpe/nrpe-sysconfig.erb'
+      $use_sysconf      = true
     }
+    default: {
+      fail("The ${module_name} module is not support on ${::operatingsystem}")
+    }
+  }
 }
