@@ -7,7 +7,7 @@ node foobar.shift-e.info {
 
     # accept connections from localhost and 10.13.37.1
     nrpe::config { 'nrpe.cfg':
-        allowed_hosts => '127.0.0.1,10.13.37.1, 
+        allowed_hosts => '127.0.0.1,10.13.37.1,
     }
 
     # add our base checks
