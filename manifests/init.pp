@@ -2,7 +2,7 @@
 #
 #   This module manages the nrpe service.
 #
-#   Jared Curtis <jared@shift-e.info>
+#   Jared Curtis <jcurtis@ncircle.com>
 #   2012-01-13
 #
 #   Garrett Honeycutt <code@garretthoneycutt.com>

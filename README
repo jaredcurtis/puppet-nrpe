@@ -1,7 +1,7 @@
 Puppet class to manage NRPE.
 
 Examples:
-node foobar.shift-e.info {
+node node.domain.tld {
     # install and configure NRPE
     class { 'nrpe': }
 
