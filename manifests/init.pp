@@ -16,8 +16,6 @@
 #
 # Requires:
 #
-#   augeas and ruby bindings
-#
 # Sample Usage:
 #
 #   class { "nrpe":
