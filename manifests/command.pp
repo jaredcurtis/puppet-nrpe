@@ -3,7 +3,6 @@ define nrpe::command(
   $cmdname=$name,
   $ensure='present'
 ) {
-
   case $ensure {
     absent,present: {}
     default: {

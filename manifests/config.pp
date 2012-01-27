@@ -15,7 +15,6 @@ define nrpe::config(
   $includecfg='UNSET',
   $include_dir='/etc/nrpe.d/'
 ) {
-
   include nrpe::params
 
   file { $nrpe::params::conf:
