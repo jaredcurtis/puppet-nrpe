@@ -24,7 +24,7 @@ class nrpe::params {
 
   case $::architecture {
     'x86_64': { $plugindir = '/usr/lib64/nagios/plugins' }
-    default:  { $plugindir = '/usr/lib64/nagios/plugins' }
+    default:  { $plugindir = '/usr/lib/nagios/plugins' }
   }
 
   case $::operatingsystem {
