@@ -46,33 +46,39 @@
 #   }
 #
 class nrpe (
-  $version='UNSET',
-  $ssl=false
+  $version='installed',
+  $ssl=false,
+  $ensure='running',
+  $enable=true,
+  $hasstatus=true,
+  $hasrestart=true
 ) {
-
   include nrpe::params
-
-  if $version == 'UNSET' {
-    $version_real = 'installed'
-  } else {
-    $version_real = $version
-  }
 
   if $ssl == true {
     $ssl_real = '-n'
   } else { $ssl_real = '' }
 
+  case $ssl {
+    'true':  { $ssl_real = '-n' }
+    default: { $ssl_real = '' }
+  }
+
+  if ! ($ensure in ['running','true','stopped','false']) {
+    fail("Invalid ensure value, $ensure, passed to nrpe")
+  }
+
   package { 'nrpe':
-    ensure => $version_real,
+    ensure => $version,
     name   => $nrpe::params::nrpe_name,
   }
 
   service { 'nrpe':
-    ensure     => running,
+    ensure     => $ensure,
     name       => $nrpe::params::nrpe_service,
-    enable     => true,
-    hasstatus  => true,
-    hasrestart => true,
+    enable     => $enable,
+    hasstatus  => $hasstatus,
+    hasrestart => $hasrestart,
     subscribe  => Package['nrpe'],
   }
 
