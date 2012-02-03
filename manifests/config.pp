@@ -1,19 +1,19 @@
 define nrpe::config(
-  $log_facility='daemon',
-  $pid_file='/var/run/nrpe/nrpe.pid',
-  $server_port='5666',
-  $server_address='UNSET',
-  $nrpe_user='nrpe',
-  $nrpe_group='nrpe',
-  $allowed_hosts='127.0.0.1,',
-  $dont_blame_nrpe='0',
-  $command_prefix='UNSET',
-  $nrpedebug='0',
-  $command_timeout='60',
-  $connection_timeout='300',
-  $allow_weak_random_seed='UNSET',
-  $includecfg='UNSET',
-  $include_dir='/etc/nrpe.d/'
+  $log_facility           = $nrpe::params::log_facility,
+  $pid_file               = $nrpe::params::pid_file,
+  $server_port            = $nrpe::params::server_port,
+  $server_address         = $nrpe::params::server_address,
+  $nrpe_user              = $nrpe::params::nrpe_user,
+  $nrpe_group             = $nrpe::params::nrpe_group,
+  $allowed_hosts          = $nrpe::params::allowed_hosts,
+  $dont_blame_nrpe        = $nrpe::params::dont_blame_nrpe,
+  $command_prefix         = $nrpe::params::command_prefix,
+  $nrpedebug              = $nrpe::params::nrpedebug,
+  $command_timeout        = $nrpe::params::command_timeout,
+  $connection_timeout     = $nrpe::params::connection_timeout,
+  $allow_weak_random_seed = $nrpe::params::allow_weak_random_seed,
+  $includecfg             = $nrpe::params::includecfg,
+  $include_dir            = $nrpe::params::include_dir
 ) {
   include nrpe::params
 

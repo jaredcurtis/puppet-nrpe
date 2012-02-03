@@ -46,12 +46,12 @@
 #   }
 #
 class nrpe (
-  $version='installed',
-  $ssl=false,
-  $ensure='running',
-  $enable=true,
-  $hasstatus=true,
-  $hasrestart=true
+  $version= $nrpe::params::version,
+  $ssl    = $nrpe::params::ssl,
+  $ensure = $nrpe::params::ensure,
+  $enable = $nrpe::params::enable,
+  $hasstatus = $nrpe::params::hasstatus,
+  $hasrestart= $nrpe::params::hasrestart
 ) {
   include nrpe::params
 
