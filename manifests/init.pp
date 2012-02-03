@@ -46,10 +46,10 @@
 #   }
 #
 class nrpe (
-  $version= $nrpe::params::version,
-  $ssl    = $nrpe::params::ssl,
-  $ensure = $nrpe::params::ensure,
-  $enable = $nrpe::params::enable,
+  $version   = $nrpe::params::version,
+  $ssl       = $nrpe::params::ssl,
+  $ensure    = $nrpe::params::ensure,
+  $enable    = $nrpe::params::enable,
   $hasstatus = $nrpe::params::hasstatus,
   $hasrestart= $nrpe::params::hasrestart
 ) {

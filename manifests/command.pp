@@ -1,7 +1,7 @@
 define nrpe::command(
   $cmd,
-  $cmdname=$name,
-  $ensure='present'
+  $cmdname = $name,
+  $ensure  = 'present'
 ) {
   case $ensure {
     absent,present: {}

@@ -1,7 +1,7 @@
 define nrpe::plugin(
-  $plugin=$name,
-  $plugindir=$nrpe::params::plugindir,
-  $source="puppet:///modules/${module_name}/plugins/${plugin}"
+  $plugin    = $name,
+  $plugindir = $nrpe::params::plugindir,
+  $source    = "puppet:///modules/${module_name}/plugins/${plugin}"
 ) {
   include nrpe::params
 
