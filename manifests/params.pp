@@ -47,6 +47,10 @@ class nrpe::params {
   $includecfg             = 'UNSET'
   $include_dir            = '/etc/nrpe.d/'
 
+  # plugin.pp
+  $pluginmode = '0744'
+
+
   case $::architecture {
     'x86_64': { $plugindir = '/usr/lib64/nagios/plugins' }
     default:  { $plugindir = '/usr/lib/nagios/plugins' }
