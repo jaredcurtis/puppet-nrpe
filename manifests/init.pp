@@ -46,6 +46,8 @@
 #   }
 #
 class nrpe (
+  $ensure=running,
+  $enable=true,
   $version='UNSET',
   $ssl=false
 ) {
@@ -68,9 +70,9 @@ class nrpe (
   }
 
   service { 'nrpe':
-    ensure     => running,
+    ensure     => $ensure,
     name       => $nrpe::params::nrpe_service,
-    enable     => true,
+    enable     => $enable,
     hasstatus  => true,
     hasrestart => true,
     subscribe  => Package['nrpe'],
