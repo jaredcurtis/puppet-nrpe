@@ -64,6 +64,10 @@ class nrpe (
     $ssl_real = '-n'
   } else { $ssl_real = '' }
 
+  if ! defined(Package[$nrpe::params::pluginspackage]) {
+    package { $nrpe::params::pluginspackage : ensure => present }
+  }
+
   package { 'nrpe':
     ensure => $version_real,
     name   => $nrpe::params::nrpe_name,
