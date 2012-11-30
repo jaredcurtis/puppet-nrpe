@@ -10,6 +10,7 @@
 #
 #   Tested platforms:
 #    - CentOS 5.6
+#    - CentOS 6.3
 #
 # Parameters:
 #
@@ -18,6 +19,8 @@
 #  Installs, configures, and manages the nrpe service.
 #
 # Requires:
+#
+#  You'll probably need EPEL installed
 #
 # Sample Usage:
 #
