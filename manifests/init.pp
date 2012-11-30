@@ -10,6 +10,7 @@
 #
 #   Tested platforms:
 #    - CentOS 5.6
+#    - CentOS 6.3
 #
 # Parameters:
 #
@@ -18,6 +19,8 @@
 #  Installs, configures, and manages the nrpe service.
 #
 # Requires:
+#
+#  You'll probably need EPEL installed
 #
 # Sample Usage:
 #
@@ -63,6 +66,10 @@ class nrpe (
   if $ssl == true {
     $ssl_real = '-n'
   } else { $ssl_real = '' }
+
+  if ! defined(Package[$nrpe::params::pluginspackage]) {
+    package { $nrpe::params::pluginspackage : ensure => present }
+  }
 
   package { 'nrpe':
     ensure => $version_real,
