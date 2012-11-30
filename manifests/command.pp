@@ -1,6 +1,7 @@
 define nrpe::command(
   $cmd,
   $cmdname=$name,
+  $cwd=$nrpe::params::plugindir,
   $ensure='present'
 ) {
   case $ensure {
