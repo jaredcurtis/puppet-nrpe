@@ -9,7 +9,7 @@ define nrpe::plugin(
     source  => $source,
     owner   => $nrpe::params::user,
     group   => $nrpe::params::group,
-    mode    => '0744',
+    mode    => '0755',
     notify  => Service['nrpe'];
   }
 }
