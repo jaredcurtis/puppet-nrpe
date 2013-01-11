@@ -1,15 +1,13 @@
 define nrpe::plugin(
   $plugin=$name,
-  $plugindir=$nrpe::params::plugindir,
-  $source="puppet:///modules/${module_name}/plugins/${plugin}"
+  $plugindir=$nrpe::plugindir,
 ) {
-  include nrpe::params
-
   file { "${plugindir}/${plugin}":
-    source  => $source,
-    owner   => $nrpe::params::user,
-    group   => $nrpe::params::group,
+    ensure  => file,
+    source  => "puppet:///modules/${module_name}/${plugin}",
+    owner   => 'root',
+    group   => 'root',
     mode    => '0755',
-    notify  => Service['nrpe'];
+    notify  => Service[$nrpe::nrpe_service],
   }
 }

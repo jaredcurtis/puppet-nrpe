@@ -1,23 +1,23 @@
 define nrpe::command(
   $cmd,
   $cmdname=$name,
-  $cwd=$nrpe::params::plugindir,
+  $cwd=$nrpe::plugindir,
   $ensure='present'
 ) {
   case $ensure {
     absent,present: {}
     default: {
-      fail("Invalid ensure value passed to Nrpe::Command[$name]")
+      fail("Invalid ensure value passed to Nrpe::Command[${name}]")
     }
   }
 
-  file { "${nrpe::params::confd}/${cmdname}.cfg":
+  file { "${nrpe::include_dir}/${cmdname}.cfg":
     ensure  => $ensure,
     content => template('nrpe/nrpe-command.cfg.erb'),
     owner   => root,
     group   => root,
     mode    => '0644',
-    require => Package['nrpe'],
-    notify  => Service['nrpe'],
+    require => Package[$nrpe::nrpe_package],
+    notify  => Service[$nrpe::nrpe_service],
   }
 }
