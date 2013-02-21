@@ -17,7 +17,7 @@ define nrpe::command(
     owner   => root,
     group   => root,
     mode    => '0644',
-    require => Package[$nrpe::nrpe_package],
+    require => File[$nrpe::include_dir],
     notify  => Service[$nrpe::nrpe_service],
   }
 }

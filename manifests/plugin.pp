@@ -9,5 +9,6 @@ define nrpe::plugin(
     group   => 'root',
     mode    => '0755',
     notify  => Service[$nrpe::nrpe_service],
+    require => Package[$nrpe::plugins_package],
   }
 }
