@@ -86,7 +86,7 @@ class nrpe (
   }
 
   if $nrpe::params::use_sysconf == true {
-    file { '/etc/sysconf/nrpe':
+    file { $nrpe::params::sysconf:
       path    => $nrpe::params::sysconf,
       content => template($nrpe::params::sysconf_template),
       owner   => $nrpe::params::user,
@@ -96,7 +96,7 @@ class nrpe (
     }
   }
 
-  file { '/etc/nrpe.d':
+  file { $nrpe::params::confd:
     ensure  => directory,
     path    => $nrpe::params::confd,
     owner   => $nrpe::params::user,
