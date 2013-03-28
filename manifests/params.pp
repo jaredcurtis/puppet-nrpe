@@ -37,6 +37,7 @@ class nrpe::params {
       $pluginspackage   = 'nagios-plugins'
     }
     'centos', 'redhat', 'fedora', 'scientific', 'oel': {
+      $confd            = '/etc/nrpe.d'
       $nrpe_name        = 'nrpe'
       $nrpe_service     = 'nrpe'
       $sysconf          = '/etc/sysconfig/nrpe'
