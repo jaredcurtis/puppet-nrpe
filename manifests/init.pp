@@ -37,7 +37,6 @@
 #
 class nrpe ($allowed_hosts='127.0.0.1') {
 
-
   $log_facility='daemon'
   $server_port='5666'
   $server_address='UNSET'
@@ -80,7 +79,6 @@ class nrpe ($allowed_hosts='127.0.0.1') {
     }
   }
 
-
   package { $plugins_package:
     ensure => installed,
   }
@@ -88,7 +86,6 @@ class nrpe ($allowed_hosts='127.0.0.1') {
   package { $nrpe_package:
     ensure => installed,
   }
-
 
   service { 'nrpe_service':
     ensure  => running,
