@@ -103,7 +103,8 @@ class nrpe ($allowed_hosts='127.0.0.1') {
     owner   => root,
     group   => root,
     mode    => '0755',
-    notify  => Service[$nrpe_service];
+    notify  => Service[$nrpe_service],
+    require => Package[$nrpe_package],
   }
 
   file { $nrpe_cfg:
@@ -112,6 +113,7 @@ class nrpe ($allowed_hosts='127.0.0.1') {
     group   => root,
     mode    => '0644',
     notify  => Service[$nrpe_service],
+    require => Package[$nrpe_package],
   }
 
 }
