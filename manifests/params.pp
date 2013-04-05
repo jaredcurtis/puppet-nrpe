@@ -20,7 +20,6 @@ class nrpe::params {
   $user  = 'root'
   $group = 'root'
   $conf  = '/etc/nagios/nrpe.cfg'
-  $confd = '/etc/nrpe.d'
 
   case $::architecture {
     'x86_64': { $plugindir = '/usr/lib64/nagios/plugins' }
@@ -28,7 +27,17 @@ class nrpe::params {
   }
 
   case $::operatingsystem {
+    'gentoo', 'sabayon': {
+      $confd            = '/etc/nagios/nrpe.d'
+      $nrpe_name        = 'nrpe'
+      $nrpe_service     = 'nrpe'
+      $sysconf          = '/etc/conf.d/nrpe'
+      $sysconf_template = 'nrpe/nrpe-sysconfig.erb'
+      $use_sysconf      = true
+      $pluginspackage   = 'nagios-plugins'
+    }
     'centos', 'redhat', 'fedora', 'scientific', 'oel': {
+      $confd            = '/etc/nrpe.d'
       $nrpe_name        = 'nrpe'
       $nrpe_service     = 'nrpe'
       $sysconf          = '/etc/sysconfig/nrpe'
