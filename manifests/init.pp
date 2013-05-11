@@ -9,7 +9,7 @@
 # === Examples
 # Example:
 # class { 'nrpe':
-#   allowed_hosts => '127.0.0.1,12.34.56.78',
+#   allowed_hosts => [ '127.0.0.1', '12.34.56.78' ],
 # }
 #
 # nrpe::command {
@@ -35,7 +35,10 @@
 # Copyright 2012 by Garrett Honeycutt
 # Copyright 2013 by Michael Moll
 #
-class nrpe ($allowed_hosts='127.0.0.1') {
+class nrpe ($allowed_hosts=['127.0.0.1']) {
+
+validate_array($allowed_hosts)
+$ahosts = join( $allowed_hosts, ',' )
 
   $log_facility='daemon'
   $server_port='5666'
