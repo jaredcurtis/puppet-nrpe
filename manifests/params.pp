@@ -22,7 +22,7 @@ class nrpe::params {
   $conf  = '/etc/nagios/nrpe.cfg'
 
   case $::architecture {
-    'x86_64': { $plugindir = '/usr/lib64/nagios/plugins' }
+    'x86_64', 'amd64': { $plugindir = '/usr/lib64/nagios/plugins' }
     default:  { $plugindir = '/usr/lib/nagios/plugins' }
   }
 
@@ -35,6 +35,9 @@ class nrpe::params {
       $sysconf_template = 'nrpe/nrpe-sysconfig.erb'
       $use_sysconf      = true
       $pluginspackage   = 'nagios-plugins'
+      $pid_file         = '/run/nrpe.pid'
+      $nrpe_user        = 'nagios'
+      $nrpe_group       = 'nagios'
     }
     'centos', 'redhat', 'fedora', 'scientific', 'oel': {
       $confd            = '/etc/nrpe.d'
@@ -44,6 +47,9 @@ class nrpe::params {
       $sysconf_template = 'nrpe/nrpe-sysconfig.erb'
       $use_sysconf      = true
       $pluginspackage   = 'nagios-plugins-all'
+      $pid_file         = '/var/run/nrpe/nrpe.pid'
+      $nrpe_user        = 'nrpe'
+      $nrpe_group       = 'nrpe'
     }
     default: {
       fail("The ${module_name} module is not support on ${::operatingsystem}")
