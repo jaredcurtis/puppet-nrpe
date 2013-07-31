@@ -22,7 +22,7 @@ class nrpe::params {
   $conf  = '/etc/nagios/nrpe.cfg'
 
   case $::architecture {
-    'x86_64': { $plugindir = '/usr/lib64/nagios/plugins' }
+    'x86_64', 'amd64': { $plugindir = '/usr/lib64/nagios/plugins' }
     default:  { $plugindir = '/usr/lib/nagios/plugins' }
   }
 
