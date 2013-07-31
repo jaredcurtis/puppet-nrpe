@@ -21,7 +21,7 @@ log_facility=<%= log_facility %>
 # number.  The file is only written if the NRPE daemon is started by the root
 # user and is running in standalone mode.
 
-pid_file=<%= pid_file %>
+pid_file=<%= pid_file_real %>
 
 
 
@@ -51,7 +51,7 @@ server_address=<%= server_address %>
 #
 # NOTE: This option is ignored if NRPE is running under either inetd or xinetd
 
-nrpe_user=<%= nrpe_user %>
+nrpe_user=<%= nrpe_user_real %>
 
 
 
@@ -61,7 +61,7 @@ nrpe_user=<%= nrpe_user %>
 #
 # NOTE: This option is ignored if NRPE is running under either inetd or xinetd
 
-nrpe_group=<%= nrpe_group %>
+nrpe_group=<%= nrpe_group_real %>
 
 
 
@@ -175,7 +175,7 @@ include=<%= includecfg %>
 # This directive allows you to include definitions from config files (with a
 # .cfg extension) in one or more directories (with recursion).
 
-include_dir=<%= include_dir %>
+include_dir=<%= include_dir_real %>
 
 
 
