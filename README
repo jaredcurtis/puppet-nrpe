@@ -10,17 +10,11 @@ node node.domain.tld {
         allowed_hosts => '127.0.0.1,10.13.37.1',
     }
 
-    # add our base checks
-    case $architecture {
-        'x86_64': { $libdir='/usr/lib64/nagios/plugins' }
-        default:  { $libdir='/usr/lib/nagios/plugins' }
-    }
-
     nrpe::command {
-        'check_users': cmd => "${libdir}/check_users -w 5 -c 10";
-        'check_load':  cmd => "${libdir}/check_load -w 15,10,5 -c 30,25,20";
-        'check_disks': cmd => "${libdir}/check_disk -w 20% -c 10%";
-        'check_zombie_procs': cmd => "${libdir}/check_procs -w 5 -c 10 -s Z";
-        'check_total_procs':  cmd => "${libdir}/check_procs -w 150 -c 250";
+        'check_users': cmd => "check_users -w 5 -c 10";
+        'check_load':  cmd => "check_load -w 15,10,5 -c 30,25,20";
+        'check_disks': cmd => "check_disk -w 20% -c 10%";
+        'check_zombie_procs': cmd => "check_procs -w 5 -c 10 -s Z";
+        'check_total_procs':  cmd => "check_procs -w 150 -c 250";
     }
 }
