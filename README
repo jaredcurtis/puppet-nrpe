@@ -1,6 +1,23 @@
-Puppet class to manage NRPE.
+nrpe
 
-Examples:
+This is the nrpe module.
+
+License
+-------
+Apache License, Version 2.0
+
+Contact
+-------
+
+
+Support
+-------
+
+Please log tickets and issues at our github page (https://github.com/jaredcurtis/puppet-nrpe)
+
+Example
+-------
+
 node node.domain.tld {
     # install and configure NRPE
     class { 'nrpe': }
