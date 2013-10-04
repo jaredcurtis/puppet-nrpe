@@ -66,6 +66,17 @@ $ahosts = join( $allowed_hosts, ',' )
         default:  { $plugindir = '/usr/lib/nagios/plugins' }
       }
     }
+    'suse': {
+      $nrpe_cfg        = '/etc/nagios/nrpe.cfg'
+      $pid_file        = '/var/run/nrpe/nrpe.pid'
+      $nrpe_user       = 'nagios'
+      $nrpe_group      = 'nagios'
+      $include_dir     = '/etc/nagios/nrpe.d/'
+      $nrpe_package    = 'nagios-nrpe'
+      $nrpe_service    = 'nrpe'
+      $plugins_package = 'nagios-plugins'
+      $plugindir       = '/usr/lib/nagios/plugins'
+    }
     'debian': {
       $nrpe_cfg        = '/etc/nagios/nrpe.cfg'
       $pid_file        = '/var/run/nagios/nrpe.pid'
