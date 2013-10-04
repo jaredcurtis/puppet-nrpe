@@ -13,11 +13,11 @@
 # }
 #
 # nrpe::command {
-#   'check_users': cmd => "check_users -w 5 -c 10";
-#   'check_load':  cmd => "check_load -w 15,10,5 -c 30,25,20";
-#   'check_disks': cmd => "check_disk -w 20% -c 10%";
-#   'check_zombie_procs': cmd => "check_procs -w 5 -c 10 -s Z";
-#   'check_total_procs':  cmd => "check_procs -w 150 -c 250";
+#   'check_users': cmd => 'check_users -w 5 -c 10';
+#   'check_load':  cmd => 'check_load -w 15,10,5 -c 30,25,20';
+#   'check_disks': cmd => 'check_disk -w 20% -c 10%';
+#   'check_zombie_procs': cmd => 'check_procs -w 5 -c 10 -s Z';
+#   'check_total_procs':  cmd => 'check_procs -w 150 -c 250';
 # }
 #
 # nrpe::plugin {'check_cpu.sh':}
@@ -54,13 +54,13 @@ $ahosts = join( $allowed_hosts, ',' )
   case $::osfamily {
     'redhat': {
       $nrpe_cfg        = '/etc/nagios/nrpe.cfg'
-      $pid_file        = '/var/run/nrpe/nrpe.pid'
-      $nrpe_user       = 'nrpe'
-      $nrpe_group      = 'nrpe'
-      $include_dir     = '/etc/nrpe.d/'
-      $nrpe_package    = 'nrpe'
+      $pid_file        = '/var/run/nrpe.pid'
+      $nrpe_user       = 'nagios'
+      $nrpe_group      = 'nagios'
+      $include_dir     = '/etc/nagios/nrpe.d/'
+      $nrpe_package    = 'nagios-nrpe'
       $nrpe_service    = 'nrpe'
-      $plugins_package = 'nagios-plugins' # change this later, but nagios-plugins-*all* is way too much
+      $plugins_package = 'nagios-plugins'
       case $::architecture {
         'x86_64': { $plugindir = '/usr/lib64/nagios/plugins' }
         default:  { $plugindir = '/usr/lib/nagios/plugins' }
@@ -82,6 +82,7 @@ $ahosts = join( $allowed_hosts, ',' )
     }
   }
 
+
   package { $plugins_package:
     ensure => installed,
   }
@@ -90,11 +91,18 @@ $ahosts = join( $allowed_hosts, ',' )
     ensure => installed,
   }
 
+  $nrpehasstatus = $::lsbdistcodename ? {
+    squeeze => false,
+    default => true,
+  }
+
   service { 'nrpe_service':
-    ensure  => running,
-    name    => $nrpe_service,
-    enable  => true,
-    require => Package[$nrpe_package],
+    ensure    => running,
+    name      => $nrpe_service,
+    enable    => true,
+    require   => Package[$nrpe_package],
+    hasstatus => $nrpehasstatus,
+    pattern   => 'nrpe',
   }
 
 
