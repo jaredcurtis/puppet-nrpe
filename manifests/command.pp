@@ -15,7 +15,7 @@ define nrpe::command(
     ensure  => $ensure,
     content => template('nrpe/nrpe-command.cfg.erb'),
     owner   => root,
-    group   => root,
+    group   => $nrpe::root_group,
     mode    => '0644',
     require => File[$nrpe::include_dir],
     notify  => Service[$nrpe::nrpe_service],

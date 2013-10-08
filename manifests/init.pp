@@ -65,6 +65,7 @@ $ahosts = join( $allowed_hosts, ',' )
         'x86_64': { $plugindir = '/usr/lib64/nagios/plugins' }
         default:  { $plugindir = '/usr/lib/nagios/plugins' }
       }
+      $root_group      = 'root'
     }
     'suse': {
       $nrpe_cfg        = '/etc/nagios/nrpe.cfg'
@@ -76,6 +77,7 @@ $ahosts = join( $allowed_hosts, ',' )
       $nrpe_service    = 'nrpe'
       $plugins_package = 'nagios-plugins'
       $plugindir       = '/usr/lib/nagios/plugins'
+      $root_group      = 'root'
     }
     'debian': {
       $nrpe_cfg        = '/etc/nagios/nrpe.cfg'
@@ -87,6 +89,19 @@ $ahosts = join( $allowed_hosts, ',' )
       $nrpe_service    = 'nagios-nrpe-server'
       $plugins_package = 'nagios-plugins'
       $plugindir       = '/usr/lib/nagios/plugins'
+      $root_group      = 'root'
+    }
+    'freebsd': {
+      $nrpe_cfg        = '/usr/local/etc/nrpe.cfg'
+      $pid_file        = '/var/run/nrpe2/nrpe2.pid'
+      $nrpe_user       = 'nagios'
+      $nrpe_group      = 'nagios'
+      $include_dir     = '/usr/local/etc/nrpe.d/'
+      $nrpe_package    = 'nrpe'
+      $nrpe_service    = 'nrpe2'
+      $plugins_package = 'nagios-plugins'
+      $plugindir       = '/usr/local/libexec/nagios'
+      $root_group      = 'wheel'
     }
     default: {
       fail("The ${module_name} module is not support on ${::operatingsystem}")
@@ -120,7 +135,7 @@ $ahosts = join( $allowed_hosts, ',' )
   file { $include_dir:
     ensure  => directory,
     owner   => root,
-    group   => root,
+    group   => $root_group,
     mode    => '0755',
     notify  => Service[$nrpe_service],
     require => Package[$nrpe_package],
@@ -129,7 +144,7 @@ $ahosts = join( $allowed_hosts, ',' )
   file { $nrpe_cfg:
     content => template('nrpe/nrpe.cfg.erb'),
     owner   => root,
-    group   => root,
+    group   => $root_group,
     mode    => '0644',
     notify  => Service[$nrpe_service],
     require => Package[$nrpe_package],

@@ -6,7 +6,7 @@ define nrpe::plugin(
     ensure  => file,
     source  => "puppet:///modules/${module_name}/${plugin}",
     owner   => 'root',
-    group   => 'root',
+    group   => $nrpe::root_group,
     mode    => '0755',
     notify  => Service[$nrpe::nrpe_service],
     require => Package[$nrpe::plugins_package],
