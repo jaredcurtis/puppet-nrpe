@@ -7,7 +7,7 @@ define nrpe::command(
   case $ensure {
     absent,present: {}
     default: {
-      fail("Invalid ensure value passed to Nrpe::Command[$name]")
+      fail("Invalid ensure value passed to Nrpe::Command[${name}]")
     }
   }
 
