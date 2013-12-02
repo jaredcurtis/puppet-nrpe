@@ -1,5 +1,5 @@
 name    'jcurtis/nrpe'
-version '0.0.1'
+version '0.0.2'
 source 'https://github.com/jaredcurtis/puppet-nrpe'
 author 'Jared Curtis <jared@shift-e.info>'
 license 'Apache License, Version 2.0'
