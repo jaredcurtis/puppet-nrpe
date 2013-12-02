@@ -12,7 +12,7 @@
 # LOG FACILITY
 # The syslog facility that should be used for logging purposes.
 
-log_facility=<%= log_facility %>
+log_facility=<%= @log_facility %>
 
 
 
@@ -21,7 +21,7 @@ log_facility=<%= log_facility %>
 # number.  The file is only written if the NRPE daemon is started by the root
 # user and is running in standalone mode.
 
-pid_file=<%= pid_file_real %>
+pid_file=<%= @pid_file_real %>
 
 
 
@@ -30,17 +30,17 @@ pid_file=<%= pid_file_real %>
 # NOTE: This must be a non-priviledged port (i.e. > 1024).
 # NOTE: This option is ignored if NRPE is running under either inetd or xinetd
 
-server_port=<%= server_port %>
+server_port=<%= @server_port %>
 
 
 
-<% if server_address != "UNSET" %>
+<% if @server_address != "UNSET" %>
 # SERVER ADDRESS
 # Address that nrpe should bind to in case there are more than one interface
 # and you do not want nrpe to bind on all interfaces.
 # NOTE: This option is ignored if NRPE is running under either inetd or xinetd
 
-server_address=<%= server_address %>
+server_address=<%= @server_address %>
 <% end %>
 
 
@@ -51,7 +51,7 @@ server_address=<%= server_address %>
 #
 # NOTE: This option is ignored if NRPE is running under either inetd or xinetd
 
-nrpe_user=<%= nrpe_user_real %>
+nrpe_user=<%= @nrpe_user_real %>
 
 
 
@@ -61,7 +61,7 @@ nrpe_user=<%= nrpe_user_real %>
 #
 # NOTE: This option is ignored if NRPE is running under either inetd or xinetd
 
-nrpe_group=<%= nrpe_group_real %>
+nrpe_group=<%= @nrpe_group_real %>
 
 
 
@@ -76,7 +76,7 @@ nrpe_group=<%= nrpe_group_real %>
 #
 # NOTE: This option is ignored if NRPE is running under either inetd or xinetd
 
-allowed_hosts=<%= allowed_hosts %>
+allowed_hosts=<%= @allowed_hosts %>
 
 
 
@@ -92,11 +92,11 @@ allowed_hosts=<%= allowed_hosts %>
 #
 # Values: 0=do not allow arguments, 1=allow command arguments
 
-dont_blame_nrpe=<%= dont_blame_nrpe %>
+dont_blame_nrpe=<%= @dont_blame_nrpe %>
 
 
 
-<% if command_prefix != "UNSET" %>
+<% if @command_prefix != "UNSET" %>
 # COMMAND PREFIX
 # This option allows you to prefix all commands with a user-defined string.
 # A space is automatically added between the specified prefix string and the
@@ -114,7 +114,7 @@ dont_blame_nrpe=<%= dont_blame_nrpe %>
 # without asking for a password.  If you do this, make sure you don't give
 # random users write access to that directory or its contents!
 
-command_prefix=<%= command_prefix %>
+command_prefix=<%= @command_prefix %>
 <% end %>
 
 
@@ -124,7 +124,7 @@ command_prefix=<%= command_prefix %>
 # syslog facility.
 # Values: 0=debugging off, 1=debugging on
 
-debug=<%= nrpedebug %>
+debug=<%= @nrpedebug %>
 
 
 
@@ -132,7 +132,7 @@ debug=<%= nrpedebug %>
 # This specifies the maximum number of seconds that the NRPE daemon will
 # allow plugins to finish executing before killing them off.
 
-command_timeout=<%= command_timeout %>
+command_timeout=<%= @command_timeout %>
 
 
 
@@ -143,11 +143,11 @@ command_timeout=<%= command_timeout %>
 # all network sessions are connected. This causes the nrpe daemons to
 # accumulate, eating system resources. Do not set this too low.
 
-connection_timeout=<%= connection_timeout %>
+connection_timeout=<%= @connection_timeout %>
 
 
 
-<% if allow_weak_random_seed != "UNSET" %>
+<% if @allow_weak_random_seed != "UNSET" %>
 # WEEK RANDOM SEED OPTION
 # This directive allows you to use SSL even if your system does not have
 # a /dev/random or /dev/urandom (on purpose or because the necessary patches
@@ -157,16 +157,16 @@ connection_timeout=<%= connection_timeout %>
 # be initialized and a warning will be issued.
 # Values: 0=only seed from /dev/[u]random, 1=also seed from weak randomness
 
-allow_weak_random_seed=<%= allow_weak_random_seed %>
+allow_weak_random_seed=<%= @allow_weak_random_seed %>
 <% end %>
 
 
 
-<% if includecfg != "UNSET" %>
+<% if @includecfg != "UNSET" %>
 # INCLUDE CONFIG FILE
 # This directive allows you to include definitions from an external config file.
 
-include=<%= includecfg %>
+include=<%= @includecfg %>
 <% end %>
 
 
@@ -175,7 +175,7 @@ include=<%= includecfg %>
 # This directive allows you to include definitions from config files (with a
 # .cfg extension) in one or more directories (with recursion).
 
-include_dir=<%= include_dir_real %>
+include_dir=<%= @include_dir_real %>
 
 
 
